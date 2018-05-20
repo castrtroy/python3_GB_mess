@@ -16,10 +16,6 @@ s.listen(5)
 while True:
     # Бесконечный цикл работы программы
 
-    question = input('Do you want to quit? y\\n: ')
-    # Если мы захотели выйти из программы
-    if question == 'y': break
-
     print('wait connection...')
     # устанавливает новый сокет соединения в переменную conn и адрес клиента в переменную addr
     client, addr = s.accept()
@@ -27,17 +23,8 @@ while True:
     print('client addr: ', addr) # распечатаем адреас клиента
 
     # recv - получает сообщение TCP
-    data = client.recv(1024)
     # если ничего не пришло , завершим программу
-    if not data:
-        conn.close()
-        break
-    else:
-        print(data)
-        # send - передает сообщение TCP
-        timestr = time.ctime(time.ctime()) + "\n"
-        conn.send(timestr.encode('ascii'))
-        # close - закрывает сокет
-        conn.close()
-
-s.close()
+    # send - передает сообщение TCP
+    timestr = time.ctime(time.time()) + "\n"
+    client.send(timestr.encode('ascii'))
+    client.close()
