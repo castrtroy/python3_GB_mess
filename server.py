@@ -1,5 +1,6 @@
 from socket import *
 import time
+import json
 #Импорт библиотеки
 host = 'localhost'
 port = 7777
@@ -21,9 +22,11 @@ while True:
     client, addr = s.accept()
     # принимаем запрос и устанавливает соединение
     print('client addr: ', addr) # распечатаем адреас клиента
-
+    tm = client.recv(1024)
+    print(tm)
     # recv - получает сообщение TCP
     # если ничего не пришло , завершим программу
+
     # send - передает сообщение TCP
     timestr = time.ctime(time.time()) + "\n"
     client.send(timestr.encode('ascii'))
