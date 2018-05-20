@@ -2,7 +2,7 @@ from socket import *
 import time
 #Импорт библиотеки
 host = 'localhost'
-port = 8888
+port = 7777
 addr = (host, port)
 #данные сервера
 #Переменный для удобства
@@ -40,4 +40,4 @@ while True:
         # close - закрывает сокет
         conn.close()
 
-tcp_socket.close()
+s.close()
